@@ -17,52 +17,7 @@ const currentDayElement = document.getElementById('currentDay');
 currentDayElement.innerText = currentDay;
 
 // Created schedule object
-let timeBlocks = [
-    {
-        "hour": '9AM',
-        "textarea": ''
-    }, 
-
-    {
-        "hour": '10AM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '11AM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '12PM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '1PM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '2PM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '3PM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '4PM',
-        "textarea": ''
-    },
-
-    {
-        "hour": '5PM',
-        "textarea": ''
-    },
-]
+let timeBlocks = []
 
 // Empty string for time block elements
 let rowString = '';
@@ -72,14 +27,15 @@ const container = document.querySelector('.container');
 
 // Loop each time block and create a new row
 // Icon: https://fontawesome.com/v5/icons/save?f=classic&s=solid
-timeBlocks.forEach(timeBlock => {
+let hours = dayjs().hour(9);
+
+for (let i = 0; i < 9; i++) {
     const row = `
         <div class="row time-block">
             <div class="col-1 hour">
-            ${timeBlock.hour}
+            ${hours.format('h A')}
             </div>
             <textarea class="col-10">
-            ${timeBlock.textarea}
             </textarea>
             <div class="col-1 saveBtn">
                 <i class='fas fa-save'></i>
@@ -88,7 +44,16 @@ timeBlocks.forEach(timeBlock => {
         `;
     
     rowString = rowString + row;
-});
+
+    hours = hours.add(1, 'hour');
+}
 
 // Implement the time block content into the container element
 container.innerHTML = rowString;
+
+
+
+const time = dayjs();
+
+
+console.log(dayjs(time).isAfter(hours, 'hour'));
