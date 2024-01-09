@@ -71,16 +71,18 @@ let rowString = '';
 const container = document.querySelector('.container');
 
 // Loop each time block and create a new row
+// Icon: https://fontawesome.com/v5/icons/save?f=classic&s=solid
 timeBlocks.forEach(timeBlock => {
     const row = `
-        <div class="row">
-            <div class="col-1">
+        <div class="row time-block">
+            <div class="col-1 hour">
             ${timeBlock.hour}
             </div>
             <textarea class="col-10">
             ${timeBlock.textarea}
             </textarea>
             <div class="col-1 saveBtn">
+                <i class='fas fa-save'></i>
             </div>
         </div>
         `;
