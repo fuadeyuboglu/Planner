@@ -61,6 +61,7 @@ for (let i = 0; i < 9; i++) {
     
     rowString = rowString + row;
 
+    // Increment the time block hour by 1
     hours = hours.add(1, 'hour');
 }
 
@@ -69,7 +70,13 @@ container.innerHTML = rowString;
 
 
 
-const time = dayjs();
+// Save the text to local storage
+// Get the button elements
+const buttons = document.querySelectorAll('.saveBtn');
 
-
-console.log(dayjs(time).isAfter(hours, 'hour'));
+// Add event listener to all buttons 
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log('Button is clicked')
+    })
+})
