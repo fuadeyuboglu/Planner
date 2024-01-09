@@ -48,14 +48,14 @@ for (let i = 0; i < 9; i++) {
 
     const row = `
         <div class="row time-block">
-            <div class="col-1 hour">
+            <div class="col-2 hour">
             ${hours.format('h A')}
             </div>
-            <textarea class="col-10 ${centralDivision}">
+            <textarea class="col-8 ${centralDivision}" id="${hours.format('h')}">
             </textarea>
-            <div class="col-1 saveBtn">
+            <button class="col-2 saveBtn">
                 <i class='fas fa-save'></i>
-            </div>
+            </button>
         </div>
         `;
     
@@ -76,7 +76,7 @@ const buttons = document.querySelectorAll('.saveBtn');
 
 // Add event listener to all buttons 
 buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log('Button is clicked')
+    button.addEventListener('click', (event) => {
+        console.log(event.currentTarget.parentElement)
     })
 })
