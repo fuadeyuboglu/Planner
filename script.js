@@ -25,17 +25,33 @@ let rowString = '';
 // Get the container element
 const container = document.querySelector('.container');
 
-// Loop each time block and create a new row
-// Icon: https://fontawesome.com/v5/icons/save?f=classic&s=solid
+// Create the hour starting at 9 o'clock
 let hours = dayjs().hour(9);
 
+// Get the current date
+const date = dayjs();
+
+// Loop to create time blocks
+// Icon: https://fontawesome.com/v5/icons/save?f=classic&s=solid
+
 for (let i = 0; i < 9; i++) {
+    // Variable for setting class names of time blocks
+    let centralDivision;
+
+    if (date.isBefore(hours, 'hour')) {
+        centralDivision = 'future';
+    } else if (date.isAfter(hours, 'hour')) {
+        centralDivision = 'past';
+    } else {
+        centralDivision = 'present'
+    }
+
     const row = `
         <div class="row time-block">
             <div class="col-1 hour">
             ${hours.format('h A')}
             </div>
-            <textarea class="col-10">
+            <textarea class="col-10 ${centralDivision}">
             </textarea>
             <div class="col-1 saveBtn">
                 <i class='fas fa-save'></i>
